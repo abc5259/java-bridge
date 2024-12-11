@@ -3,8 +3,10 @@ package bridge.controller;
 
 import bridge.converter.StringToBridgeSizeConverter;
 import bridge.converter.StringToMoveSpaceConverter;
+import bridge.converter.StringToRetryConverter;
 import bridge.domain.BridgeSize;
 import bridge.domain.MoveSpace;
+import bridge.domain.Retry;
 import bridge.view.InputView;
 
 public class IteratorInputHandler {
@@ -28,6 +30,13 @@ public class IteratorInputHandler {
         return this.iteratorInputTemplate.execute(
                 inputView::readMoving,
                 new StringToMoveSpaceConverter()
+        );
+    }
+
+    public Retry inputRetry() {
+        return this.iteratorInputTemplate.execute(
+                inputView::readGameCommand,
+                new StringToRetryConverter()
         );
     }
 

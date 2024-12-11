@@ -12,4 +12,8 @@ public class Bridge {
     public boolean isMovable(int space, MoveSpace moveSpace) {
         return bridges.get(space - 1) == moveSpace;
     }
+
+    public boolean isFinish(int currSpace) {
+        return bridges.size() == currSpace;
+    }
 }

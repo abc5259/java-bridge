@@ -8,11 +8,13 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private int tryCount;
     private int currSpace;
     private List<MoveHistory> moveHistories;
     private final Bridge bridge;
 
-    public BridgeGame(int currSpace, List<MoveHistory> moveHistories, Bridge bridge) {
+    public BridgeGame(int tryCount, int currSpace, List<MoveHistory> moveHistories, Bridge bridge) {
+        this.tryCount = tryCount;
         this.currSpace = currSpace;
         this.moveHistories = moveHistories;
         this.bridge = bridge;
@@ -41,10 +43,15 @@ public class BridgeGame {
      */
     public void retry() {
         currSpace = 1;
+        tryCount++;
         moveHistories = new ArrayList<>();
     }
 
     public List<MoveHistory> getMoveHistories() {
         return moveHistories;
+    }
+
+    public boolean isGameOver() {
+        return bridge.isFinish(currSpace);
     }
 }

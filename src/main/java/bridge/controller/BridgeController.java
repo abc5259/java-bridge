@@ -7,6 +7,7 @@ import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeSize;
 import bridge.domain.MoveSpace;
+import bridge.domain.Retry;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 
@@ -26,14 +27,23 @@ public class BridgeController {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize.size()));
 
-        BridgeGame bridgeGame = new BridgeGame(1, new ArrayList<>(), bridge);
+        BridgeGame bridgeGame = new BridgeGame(1, 1, new ArrayList<>(), bridge);
         while (true) {
             MoveSpace moveSpace = iteratorInputHandler.inputMoveSpace();
             boolean result = bridgeGame.move(moveSpace);
             outputView.printMap(bridgeGame.getMoveHistories());
 
             if (result == false) { //재시도 하기
-                bridgeGame.retry();
+                Retry retry = iteratorInputHandler.inputRetry();
+                if (retry == Retry.RETRY) {
+                    bridgeGame.retry();
+                    continue;
+                }
+
+            }
+
+            if (bridgeGame.isGameOver()) {
+
             }
         }
     }
