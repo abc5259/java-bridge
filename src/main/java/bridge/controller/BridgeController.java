@@ -1,11 +1,14 @@
 package bridge.controller;
 
 
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeSize;
+import bridge.domain.MoveSpace;
 import bridge.view.OutputView;
-import java.util.List;
+import java.util.ArrayList;
 
 public class BridgeController {
 
@@ -21,7 +24,10 @@ public class BridgeController {
         outputView.printGameStartMessage();
         BridgeSize bridgeSize = iteratorInputHandler.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize.size());
-        
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize.size()));
+
+        BridgeGame bridgeGame = new BridgeGame(1, new ArrayList<>(), bridge);
+        MoveSpace moveSpace = iteratorInputHandler.inputMoveSpace();
+        boolean result = bridgeGame.move(moveSpace);
     }
 }
