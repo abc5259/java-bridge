@@ -1,8 +1,11 @@
 package bridge.controller;
 
 
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeSize;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class BridgeController {
 
@@ -17,5 +20,8 @@ public class BridgeController {
     public void process() {
         outputView.printGameStartMessage();
         BridgeSize bridgeSize = iteratorInputHandler.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize.size());
+        
     }
 }

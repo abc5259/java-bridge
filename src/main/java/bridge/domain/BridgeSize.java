@@ -1,11 +1,11 @@
 package bridge.domain;
 
-public class BridgeSize {
-    private final int size;
+public record BridgeSize(
+        int size
+) {
 
-    public BridgeSize(int size) {
+    public BridgeSize {
         validateBridgeSize(size);
-        this.size = size;
     }
 
     public void validateBridgeSize(int size) {
