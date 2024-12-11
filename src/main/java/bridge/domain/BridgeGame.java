@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
 public class BridgeGame {
 
     private int currSpace;
-    private final List<MoveHistory> moveHistories;
+    private List<MoveHistory> moveHistories;
     private final Bridge bridge;
 
     public BridgeGame(int currSpace, List<MoveHistory> moveHistories, Bridge bridge) {
@@ -39,5 +40,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        currSpace = 1;
+        moveHistories = new ArrayList<>();
+    }
+
+    public List<MoveHistory> getMoveHistories() {
+        return moveHistories;
     }
 }

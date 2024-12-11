@@ -27,7 +27,14 @@ public class BridgeController {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize.size()));
 
         BridgeGame bridgeGame = new BridgeGame(1, new ArrayList<>(), bridge);
-        MoveSpace moveSpace = iteratorInputHandler.inputMoveSpace();
-        boolean result = bridgeGame.move(moveSpace);
+        while (true) {
+            MoveSpace moveSpace = iteratorInputHandler.inputMoveSpace();
+            boolean result = bridgeGame.move(moveSpace);
+            outputView.printMap(bridgeGame.getMoveHistories());
+
+            if (result == false) { //재시도 하기
+                bridgeGame.retry();
+            }
+        }
     }
 }
