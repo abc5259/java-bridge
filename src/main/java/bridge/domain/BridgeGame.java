@@ -54,4 +54,8 @@ public class BridgeGame {
     public boolean isGameOver() {
         return bridge.isFinish(currSpace);
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }

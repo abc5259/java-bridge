@@ -12,6 +12,8 @@ public class OutputView {
 
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
+    private static final String SUCCESS_FORMAT = "게임 성공 여부: %s%n";
+    private static final String TRY_COUNT_FORMAT = "총 시도한 횟수: %d%n";
 
     public void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
@@ -56,7 +58,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean isSuccess, int tryCount, List<MoveHistory> moveHistories) {
+        System.out.println("최종 게임 결과");
+        printMap(moveHistories);
+        System.out.println();
+        if (isSuccess) {
+            System.out.printf(SUCCESS_FORMAT, "성공");
+            System.out.printf(TRY_COUNT_FORMAT, tryCount);
+            return;
+        }
+
+        System.out.printf(SUCCESS_FORMAT, "실패");
+        System.out.printf(TRY_COUNT_FORMAT, tryCount);
     }
 
     public void printErrorMessage(Exception exception) {

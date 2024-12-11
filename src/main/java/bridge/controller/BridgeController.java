@@ -28,23 +28,27 @@ public class BridgeController {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize.size()));
 
         BridgeGame bridgeGame = new BridgeGame(1, 1, new ArrayList<>(), bridge);
-        while (true) {
+
+        boolean isContinue = true;
+        do {
             MoveSpace moveSpace = iteratorInputHandler.inputMoveSpace();
             boolean result = bridgeGame.move(moveSpace);
             outputView.printMap(bridgeGame.getMoveHistories());
 
-            if (result == false) { //재시도 하기
+            if (!result) { //재시도 하기
                 Retry retry = iteratorInputHandler.inputRetry();
                 if (retry == Retry.RETRY) {
                     bridgeGame.retry();
                     continue;
                 }
-
+                outputView.printResult(false, bridgeGame.getTryCount(), bridgeGame.getMoveHistories());
+                isContinue = false;
             }
 
             if (bridgeGame.isGameOver()) {
-
+                outputView.printResult(true, bridgeGame.getTryCount(), bridgeGame.getMoveHistories());
+                isContinue = false;
             }
-        }
+        } while (isContinue);
     }
 }

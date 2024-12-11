@@ -14,6 +14,6 @@ public class Bridge {
     }
 
     public boolean isFinish(int currSpace) {
-        return bridges.size() == currSpace;
+        return bridges.size() < currSpace;
     }
 }
