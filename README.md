@@ -2,8 +2,8 @@
 
 ## 기능 요구 사항 정리
 
-- [ ] 게임 시작 문구를 출력한다.
-- [ ] 다리의 길이를 입력받는다.
+- [x] 게임 시작 문구를 출력한다.
+- [x] 다리의 길이를 입력받는다.
 - [ ] 입력받은 다리 길이로 다리를 만든다.
 - [ ] 시도 회수를 구한다.
 - [ ] 이동할 칸을 입력받는다.
@@ -302,7 +302,7 @@ public class BridgeMaker {
 
 ### BridgeRandomNumberGenerator 클래스
 
-- Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- Random 값 추출은 제공된 `bridge.domain.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 #### 사용 예시
